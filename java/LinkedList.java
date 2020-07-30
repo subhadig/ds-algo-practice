@@ -1,6 +1,6 @@
 // https://leetcode.com/explore/learn/card/linked-list/209/singly-linked-list/1290/
 
-class MyLinkedList {
+public class MyLinkedList {
     
     static class Node {
         int val;
@@ -17,7 +17,6 @@ class MyLinkedList {
 
     /** Initialize your data structure here. */
     public MyLinkedList() {
-        print();
     }
     
     /** Get the value of the index-th node in the linked list. If the index is invalid, return -1. */
@@ -40,7 +39,6 @@ class MyLinkedList {
             head = n;
         }
         length++;
-        print();
     }
     
     /** Append a node of value val to the last element of the linked list. */
@@ -53,7 +51,6 @@ class MyLinkedList {
         
         n.next = new Node(val);
         length++;
-        print();
     }
     
     /** Add a node of value val before the index-th node in the linked list. If index equals to the length of linked list, the node will be appended to the end of linked list. If index is greater than the length, the node will not be inserted. */
@@ -61,13 +58,14 @@ class MyLinkedList {
         if(index > length) {
             return;
         }
-        
-        Node n = getNode(index - 1);
-        
         if(index == 0) {
             addAtHead(val);
             return;
-        } if(index == length) {
+        }
+        
+        Node n = getNode(index - 1);
+        
+        if(index == length) {
             n.next = new Node(val);
         } else {
             Node n1 = n.next;
@@ -76,7 +74,6 @@ class MyLinkedList {
         }
         
         length++;
-        print();
     }
     
     private Node getNode(int index) {
@@ -99,6 +96,7 @@ class MyLinkedList {
         if(index >= length) {
             return;
         } else if(index == 0) {
+            length--;
             head = head.next;
             return;
         }
@@ -107,20 +105,11 @@ class MyLinkedList {
         
         if(n.next.next == null) {
             n.next = null;
+            length--;
         } else {
             n.next = n.next.next;
+            length--;
         }
-        print();
-    }
-    
-    private void print() {
-        Node n = head;
-        List l = new ArrayList();
-        while(n != null) {
-            l.add(n.val);
-            n = n.next;
-        }
-        System.out.println(l);
     }
 }
 
@@ -132,4 +121,4 @@ class MyLinkedList {
  * obj.addAtTail(val);
  * obj.addAtIndex(index,val);
  * obj.deleteAtIndex(index);
- */
+ **/
