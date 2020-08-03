@@ -53,7 +53,6 @@ class MyLinkedList {
             head = n;
         }
         length++;
-        print();
     }
     
     /** Append a node of value val to the last element of the linked list. */
@@ -68,7 +67,6 @@ class MyLinkedList {
             tail = n;
         }
         length++;
-        print();
     }
     
     /** Add a node of value val before the index-th node in the linked list. If index equals to the length of linked list, the node will be appended to the end of linked list. If index is greater than the length, the node will not be inserted. */
@@ -94,7 +92,6 @@ class MyLinkedList {
         n.prev = prev;
         
         length++;
-        print();
     }
     
     /** Delete the index-th node in the linked list, if the index is valid. */
@@ -109,25 +106,13 @@ class MyLinkedList {
             head = head.next;
         } else if(index == length - 1) {
             tail.prev.next = null;
+            tail = tail.prev;
         } else {
             Node n = getNode(index);
             n.prev.next = n.next;
             n.next.prev = n.prev;
         }
         length--;
-        print();
-    }
-    
-    private void print() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("List: [");
-        Node n = head;
-        while(n != null) {
-            sb.append(n.val + " ");
-            n = n.next;
-        }
-        sb.append("], length: " + length);
-        System.out.println(sb.toString());
     }
 }
 
@@ -140,3 +125,4 @@ class MyLinkedList {
  * obj.addAtIndex(index,val);
  * obj.deleteAtIndex(index);
  */
+
