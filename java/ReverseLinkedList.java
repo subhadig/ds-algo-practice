@@ -26,3 +26,33 @@ class Solution {
         return prev;
     }
 }
+
+// recursive. time: O(n)
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        if(head == null) {
+            return head;
+        }
+        return helper(null, head);
+    }
+    
+    private ListNode helper(ListNode prev, ListNode cur) {
+        ListNode tmp = cur.next;
+        cur.next = prev;
+        if(tmp == null) {
+            return cur;
+        }
+        return helper(cur, tmp);
+    }
+}
