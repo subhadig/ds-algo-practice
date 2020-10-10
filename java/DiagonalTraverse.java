@@ -55,3 +55,42 @@ class Solution {
     }
 }
 
+
+// Second attempt
+// In progress
+class Solution {
+    public int[] findDiagonalOrder(int[][] matrix) {
+        int m = matrix.length;
+        int n = matrix[0].length;
+        int[] result = new int[m * n];
+        
+        boolean dir = true;
+        int i = j = 0;
+        
+        for(int x = 0; x < result.length; x++) {
+            result[x] = matrix[i][j];
+            
+            if(dir) {
+                if(i > 0 && j < n - 1) {
+                    i--;
+                    j++;
+                } else if(j < n - 1) {
+                    dir = !dir;
+                    j++;
+                } else {
+                    dir = !dir;
+                    i++;
+                }
+            } else {
+                if(i < m - 1 && j > 0) {
+                    i++;
+                    j--;
+                } else if(i < m - 1) {
+                    dir = !dir;
+                    
+                }
+            }            
+        }
+    }
+}
+
