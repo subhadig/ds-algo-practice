@@ -1,6 +1,6 @@
 //https://leetcode.com/explore/learn/card/array-and-string/202/introduction-to-2d-array/1168/
 
-// Failing for input: [[1,2,3,4],[5,6,7,8],[9,10,11,12]]
+// O(m*n)
 class Solution {
     public List<Integer> spiralOrder(int[][] matrix) {
         if(matrix == null || matrix.length == 0) {
@@ -17,7 +17,6 @@ class Solution {
         List<Integer> result = new ArrayList<>(l);
         
         for(int k = 0; k < l; k++) {
-            System.out.println(String.format("i:%s, j:%s", i, j));
             result.add(matrix[i][j]);
             
             if(dir == 0) {
@@ -48,7 +47,7 @@ class Solution {
                 if(i > mini) {
                     i--;
                 } else {
-                    dir = 1;
+                    dir = 0;
                     j++;
                     mini++;
                 }
