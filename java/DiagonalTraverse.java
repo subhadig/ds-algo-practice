@@ -1,40 +1,47 @@
 // https://leetcode.com/explore/learn/card/array-and-string/202/introduction-to-2d-array/1167/
 
-// In progress
+// O(n)
 class Solution {
     public int[] findDiagonalOrder(int[][] matrix) {
+        if(matrix == null || matrix.length == 0) {
+            return new int[0];
+        }
         
-        List<Integer> result = new ArrayList<>();
+        int m = matrix.length;
+        int n = matrix[0].length;
+        int[] result = new int[m * n];
         
+        boolean dir = true;
         int i = 0, j = 0;
-        boolean leftToRight = true;
         
-        while(true) {
-            System.out.println("i,j = " + i + "," + j);
-            if(i >= 0 && i < matrix.length && j >= 0 && j < matrix[i].length) {
-                
-                result.add(matrix[i][j]);
-                
-                if(i == matrix.length - 1 && j == matrix[i].length - 1) {
-                    break;
+        for(int x = 0; x < result.length; x++) {
+            result[x] = matrix[i][j];
+            
+            if(dir) {
+                if(i > 0 && j < n - 1) {
+                    i--;
+                    j++;
+                } else if(j < n - 1) {
+                    dir = !dir;
+                    j++;
+                } else {
+                    dir = !dir;
+                    i++;
                 }
             } else {
-               leftToRight = !leftToRight; 
-            }
-            
-            if(leftToRight) {
-                i--;
-                j++;
-            } else {
-                i++;
-                j--;
-            }
+                if(i < m - 1 && j > 0) {
+                    i++;
+                    j--;
+                } else if(i < m - 1) {
+                    dir = !dir;
+                    i++;
+                } else {
+                    dir = !dir;
+                    j++;
+                }
+            }            
         }
         
-        int[] output = new int[result.size()];
-        for(int k = 0; k < output.length; k++) {
-            output[k] = result.get(k);
-        }
-        return output;
+        return result;
     }
 }
