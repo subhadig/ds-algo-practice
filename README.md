@@ -1,2 +1,2 @@
-# leetcode
-My leetcode solutions
+# DS Algo Practice
+My DS Algo Practice solutions
