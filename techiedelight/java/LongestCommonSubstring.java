@@ -11,21 +11,35 @@ Explanation: The longest common substring of strings "ABABC" and "BABCA" is "BAB
 class LongestCommonSubstring
 {
 
-	public static String findLongestCommonSubstring(String X, String Y, int m, int n)
-	{
-        if(X.charAt(m - 1) == Y.charAt(n - 1)) {
-            return findLongestCommonSubstring(X, Y, m - 1, n - 1) + 1;
-        } else {
-        }
-	}
-
 	public static String findLongestCommonSubstring(String X, String Y)
 	{
-        findLongestCommonSubstring(X, Y, X.length(), Y.length());
+        int[][] lookup = new int[X.length()][Y.length()];
+
+        int maxLen = 0;
+        int endingInd = 0;
+
+        for(int i = 0; i < X.length(); i++) {
+            for(int j = 0; j < Y.length(); j++) {
+                if(X.charAt(i) == Y.charAt(j)) {
+                    if(i > 0 && j > 0) {
+                        lookup[i][j] = lookup[i-1][j-1] + 1;
+                    } else {
+                        lookup[i][j] = 1;
+                    }
+
+                    if(lookup[i][j] > maxLen) {
+                        maxLen = lookup[i][j];
+                        endingInd = i;
+                    }
+                }
+            }
+        }
+
+        return X.substring(endingInd - maxLen + 1, endingInd + 1);
 	}
 
     public static void main(String[] args) {
-        findLongestCommonSubstring("ABABC", "BABCA")
+        System.out.println(findLongestCommonSubstring("ABABC", "BABCA"));
     }
 }
 
